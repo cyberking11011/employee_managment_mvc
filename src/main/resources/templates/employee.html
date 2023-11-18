@@ -1,0 +1,124 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HR window</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #171717">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<div class="container">
+
+
+    <nav class="navbar" style="background-color: #000000">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: #ffeb29">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation" style="color: #ffeb29">
+                <span class="navbar-toggler-icon" style="color: #ffeb29"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://localhost:8080/employees" style="color: #ffeb29">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffeb29">Edit
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="http://localhost:8080/departments"
+                                   style="color: #ffeb29">Add new Department</a></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/positions" style="color: #ffeb29">Add new Position</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <form action="#" th:action="@{/employees/create}"
+          th:object="${employeeRequestData}" method="post">
+
+        <div class="container-fluid">
+            <h1 class="text-center" style="color: #ffeb29">Employee Registration Form</h1>
+
+            <label for="inputName" class="form-label" style="color: antiquewhite">Name</label>
+            <input type="text" class="form-control" name="name" id="inputName" th:field="*{name}" required>
+
+            <label for="inputSurname" class="form-label" style="color: antiquewhite">Surname</label>
+            <input type="text" class="form-control" name="surname" id="inputSurname" th:field="*{surname}" required>
+
+            <label for="inputFathername" class="form-label" style="color: antiquewhite">Father name</label>
+            <input type="text" class="form-control" name="fatherName" id="inputFathername" th:field="*{fatherName}"
+                   required>
+
+
+            <label for="inputGender" class="form-label" style="color: antiquewhite">Gender</label>
+            <select th:field="*{gender}" id="inputGender" class="form-select">
+                <option value="" disabled selected>Please select gender</option>
+                <option th:each="gender:${genders}" th:value="${gender.name()}" th:text="${gender.name()}"></option>
+            </select>
+
+            <label for="birth" class="form-label" style="color: antiquewhite">Day of birth</label>
+            <input type="date" class="form-control" name="birth" id="birth" th:field="*{birthDay}" required>
+
+
+            <label for="inputEmail" class="form-label" style="color: antiquewhite">Email</label>
+            <input type="email" class="form-control" id="inputEmail" th:field="*{email}" required>
+
+
+            <label for="inputSalary" class="form-label" style="color: antiquewhite">Salary</label>
+            <input type="number" step="any" placeholder="₼" class="form-control" id="inputSalary" th:field="*{salary}"
+                   required>
+
+
+            <label for="inputAddress" class="form-label" style="color: antiquewhite">Address</label>
+            <input type="text" class="form-control" id="inputAddress" th:field="*{address}"
+                   placeholder="Please type employee address">
+
+
+            <label for="inputRole" class="form-label" style="color: antiquewhite">Role</label>
+            <select th:field="*{role}" id="inputRole" class="form-select">
+                <option value="" disabled selected>Please select role</option>
+                <option th:each="role:${roles}" th:value="${role.name()}" th:text="${role.name()}"></option>
+            </select>
+
+            <label for="inputDepartment" class="form-label" style="color: antiquewhite">Department</label>
+            <select th:field="*{departmentDTO.id}" id="inputDepartment" class="form-select">
+                <option value="Please select department" selected disabled="disabled">Please select department</option>
+                <option placeholder="Please select department" th:each="department:${departments}"
+                        th:value="${department.id}"
+                        th:text="${department.name}"></option>
+
+            </select>
+
+            <label for="inputPosition" class="form-label" style="color: antiquewhite">Position</label>
+            <select th:field="*{positionRequestData.id}" id="inputPosition" class="form-select">
+                <option value="Please select position" selected disabled="disabled">Please select position</option>
+                <option placeholder="Please select position" th:each="position:${positions}"
+                        th:value="${position.id}"
+                        th:text="${position.name}"></option>
+
+            </select>
+        </div>
+        <hr/>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="submit" class="btn btn-primary center"> Add new employee</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

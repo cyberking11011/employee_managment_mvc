@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Position Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #171717">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<div class="container">
+
+    <nav class="navbar" style="background-color: #000000">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: #ffeb29">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation" style="color: #ffeb29">
+                <span class="navbar-toggler-icon" style="color: #ffeb29"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://localhost:8080/employees" style="color: #ffeb29">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false" style="color: #ffeb29">Edit
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="http://localhost:8080/employees/create"
+                                   style="color: #ffeb29">Add new Employee</a></li>
+                            <li><a class="dropdown-item" href="http://localhost:8080/departments" style="color: #ffeb29">Add new Department</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <h1 class="text-center" style="color: #ffeb29">Position Registration Form</h1>
+        <form action="#" th:action="@{/positions/create}" method="post" th:object="${positionRequestData}">
+
+            <label for="inputDepartmentName" style="color: antiquewhite">Department</label>
+            <select class="form-select" id="inputDepartmentName" th:field="*{department.id}" >
+                <option th:each="department:${departments}"
+                        th:value="${department.id}"
+                        th:text="${department.name}"></option>
+            </select>
+
+            <label for="inputName" style="color: antiquewhite">Name</label>
+            <input type="text" id="inputName" th:field="*{name}" required>
+
+            <button type="submit" class="btn btn-primary">Add new Position</button>
+        </form>
+    </div>
+    <hr/>
+    <div class="container-fluid">
+        <form action="#" th:action="@{/positions/create}" method="get">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th style="color: #ff9429">#</th>
+                    <th class="text-center" style="color: #ffeb29">Department</th>
+                    <th class="text-center" style="color: #ffeb29">Position Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="position:${positions}">
+                    <td th:text="${positionStat.index+1}"></td>
+                    <td th:text="${position.department.name}"></td>
+                    <td th:text="${position.name}"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
