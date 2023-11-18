@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <option name="projectDefaultTargetUuid" value="e7fa644f-7169-4837-b68a-18a0a0b3b55f" />
+    <targets>
+      <target name="postgres_db" type="docker-compose" uuid="893f0414-c9b6-4e4a-a44c-32eea76295df">
+        <config>
+          <option name="targetPlatform">
+            <TargetPlatform />
+          </option>
+          <option name="configurationFiles">
+            <list>
+              <option value="C:\Users\ShahR-PC\IdeaProjects\employee_app\docker-compose.yml" />
+            </list>
+          </option>
+          <option name="envs">
+            <map>
+              <entry key="POSTGRES_DB" value="employee_db" />
+              <entry key="POSTGRES_PASSWORD" value="#Shah3271989" />
+              <entry key="POSTGRES_USER" value="shahriyar" />
+            </map>
+          </option>
+          <option name="serviceName" value="postgres_db" />
+        </config>
+        <ContributedStateBase type="JavaLanguageRuntime">
+          <config>
+            <option name="homePath" value="$PROJECT_DIR$/../../../../Program Files/Java/jdk-20" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
