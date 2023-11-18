@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  api_service:
+    build: .
+    image: employee_app:0.0.1
+    container_name: c_employee
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - net-employee
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://c_postgres_db:5432/employee_db
+    depends_on:
+      - postgres_db
+
+
+  postgres_db:
+    image: postgres
+    container_name: c_postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - net-employee
+    environment:
+       - POSTGRES_DB=${POSTGRES_DB}
+       - POSTGRES_USER=${POSTGRES_USER}
+       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+   postgres-data:
+networks:
+  net-employee:
