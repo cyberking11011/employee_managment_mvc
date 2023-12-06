@@ -1,4 +1,4 @@
-# This is demo employee app
+# This is demo employee crud app
 ###### Used technologies:
 | Backend: |  Frontend: |
 | --- | --- |
