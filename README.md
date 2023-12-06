@@ -1,20 +1,15 @@
 # This is demo employee app
 ###### Used technologies:
-| Backend: |
+| Backend: |  Frontend: |
 ---
-| 1.Spring MVC |
-| 2.Spring Data Jpa |
-| 3.PostgreSql |
-| 4.Hibernate |
+| 1.Spring MVC |  1.Thymeleaf |
+| 2.Spring Data Jpa |  2.Bootstrap 
+| 3.PostgreSql |  3.Html |
+| 4.Hibernate |  4.Css(inline) |
 | 5.Docker |
 | 6.Builder pattern(generally) |
 
-| Frontend: |
----
-| 1.Thymeleaf |
-| 2.Bootstrap |
-| 3.Html |
-| 4.Css(inline) |
+
 
 -------------------------------------------------------------------------------------------------------------------
 
