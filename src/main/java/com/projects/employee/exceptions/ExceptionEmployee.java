@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 public enum ExceptionEmployee {
     USER_NOT_FOUND_BY_ID("User not found by id: ", 1),
     USER_NOT_FOUND_BY_ROLE("User not found by role: ", 2),
-    INPUT_VALUE_FORMAT_NOT_CORRECT("User id must be in 'UUID' format",3)
-    ;
+    INPUT_VALUE_FORMAT_NOT_CORRECT("User id must be in 'UUID' format",3),
+    DEPARTMENT_NOT_FOUND_FOR_POSITION_ID("Department not found for selected position",4);
 
     String message;
     int number;

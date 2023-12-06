@@ -1,16 +1,14 @@
 package com.projects.employee.services;
 
 import com.projects.employee.dtos.DepartmentDTO;
-import com.projects.employee.entities.Department;
-import com.projects.employee.entities.Positions;
-import com.projects.employee.requesties.PositionRequestData;
-import com.projects.employee.responses.PositionResponseData;
+import com.projects.employee.dtos.PositionDTO;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface PositionService {
-    PositionResponseData create(PositionRequestData positionDTO);
+    PositionDTO create(PositionDTO positionDTO);
 
-    List<PositionResponseData> listPositions();
-    List<PositionResponseData> findPositionsByDepartment(Department department);
+    List<PositionDTO> listPositions();
+    DepartmentDTO selectDepartmentByPositionID(UUID positionID);
 }

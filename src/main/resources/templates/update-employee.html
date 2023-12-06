@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,9 +45,10 @@
             </div>
         </div>
     </nav>
-    <form action="#" th:action="@{/employees/create}" th:object="${employeeDTO}" method="post">
+    <form action="#" th:action="@{/employees/update-employee/{id}(id=${employeeDTO.getId()})}" th:object="${employeeDTO}" method="post">
         <div class="container-fluid">
-            <h1 class="text-center" style="color: #ffeb29">Employee Registration Form</h1>
+            <h1 class="text-center" style="color: #ffeb29">Employee Update Form</h1>
+
             <label for="inputName" class="form-label" style="color: antiquewhite">Name</label>
             <input type="text" class="form-control" name="name" id="inputName" th:field="*{name}" required>
             <label for="inputSurname" class="form-label" style="color: antiquewhite">Surname</label>
@@ -79,26 +81,28 @@
             <label for="inputPosition" id="lblPosition" class="form-label"
                    style="color: antiquewhite">Department - Position</label>
             <select th:field="*{positionDTO.id}" id="inputPosition" class="form-select">
-                <option value="Please select position" selected disabled="disabled">Please select position
-                </option>
                 <option placeholder="Please select position" th:each="position:${positions}"
                         th:value="${position.id}"
                         th:text="${position.department.name+' - '+position.name}">
 
                 </option>
             </select>
-<!--            <label for="inputDepartment" class="form-label" style="color: antiquewhite">Department</label>-->
-<!--            <input type="text" disabled="disabled" class="form-control" name="department" id="inputDepartment" th:field="*{departmentDTO.id}"  >-->
-
-
 
 
         </div>
+
         <hr/>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-primary center"> Add new employee</button>
+
+            <button type="submit" class="btn btn-primary center"
+                    th:text="'Update employee - ' + ${employeeDTO.name+' '+employeeDTO.surname}">
+                Update
+                employee
+            </button>
+
         </div>
     </form>
 </div>
+
 </body>
 </html>

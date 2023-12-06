@@ -1,10 +1,11 @@
 package com.projects.employee.services.impl;
 
-import com.projects.employee.entities.Department;
+import com.projects.employee.dtos.DepartmentDTO;
+import com.projects.employee.dtos.PositionDTO;
 import com.projects.employee.entities.Positions;
+import com.projects.employee.exceptions.ExceptionEmployee;
+import com.projects.employee.exceptions.ServiceException;
 import com.projects.employee.repositories.PositionRepository;
-import com.projects.employee.requesties.PositionRequestData;
-import com.projects.employee.responses.PositionResponseData;
 import com.projects.employee.services.PositionService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,22 +22,24 @@ public class PositionServiceImpl implements PositionService {
     PositionRepository positionRepository;
 
     @Override
-    public PositionResponseData create(PositionRequestData positionDTO) {
+    public PositionDTO create(PositionDTO positionDTO) {
         Positions position = Positions.builder()
                 .name(positionDTO.getName())
                 .department(positionDTO.getDepartment())
                 .build();
         Positions savedPosition = positionRepository.save(position);
-        return PositionResponseData.buildBy(savedPosition);
+        return PositionDTO.buildBy(savedPosition);
     }
 
     @Override
-    public List<PositionResponseData> listPositions() {
-        return PositionResponseData.buildBy(positionRepository.findAll());
+    public List<PositionDTO> listPositions() {
+        return PositionDTO.buildBy(positionRepository.findAll());
     }
 
+
     @Override
-    public List<PositionResponseData> findPositionsByDepartment(Department department) {
-        return positionRepository.findPositionsByDepartment(department);
+    public DepartmentDTO selectDepartmentByPositionID(UUID positionID) {
+        return DepartmentDTO.buildBy(positionRepository.selectDepartmentByPositionID(positionID)
+                .orElseThrow(() -> new ServiceException(ExceptionEmployee.DEPARTMENT_NOT_FOUND_FOR_POSITION_ID)));
     }
 }
