@@ -1,4 +1,4 @@
-package com.projects.employee.controllers.webmvc;
+package com.projects.employee.controllers;
 
 import com.projects.employee.dtos.DepartmentDTO;
 import com.projects.employee.services.DepartmentService;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class DepartmentPageController {
     DepartmentService departmentService;
-    static String DEPARTMENTS = "departments";
-    static String REDIRECT_TO_DEPARTMENTS = "redirect:/departments";
+    public String DEPARTMENTS = "departments";
+    public String REDIRECT_TO_DEPARTMENTS = "redirect:/departments";
 
     @GetMapping
     public String listDepartments(Model model) {
