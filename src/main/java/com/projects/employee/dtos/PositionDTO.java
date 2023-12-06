@@ -1,9 +1,8 @@
-package com.projects.employee.responses;
+package com.projects.employee.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.projects.employee.entities.Department;
 import com.projects.employee.entities.Positions;
-import com.projects.employee.requesties.PositionRequestData;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PositionResponseData {
+public class PositionDTO{
 
     @NotNull
     UUID id;
@@ -29,19 +28,19 @@ public class PositionResponseData {
     @NotNull
     Department department;
 
-    public static PositionResponseData buildBy(Positions position) {
-        return PositionResponseData.builder()
+    public static PositionDTO buildBy(Positions position) {
+        return PositionDTO.builder()
                 .id(position.getId())
                 .name(position.getName())
                 .department(position.getDepartment())
                 .build();
     }
 
-    public static List<PositionResponseData> buildBy(List<Positions> positions) {
-        return positions.stream().map(PositionResponseData::buildBy).collect(Collectors.toList());
+    public static List<PositionDTO> buildBy(List<Positions> positions) {
+        return positions.stream().map(PositionDTO::buildBy).collect(Collectors.toList());
     }
 
-    public static Positions buildPosition(PositionRequestData data) {
+    public static Positions buildPosition(PositionDTO data) {
         return Positions.builder()
                 .id(data.getId())
                 .name(data.getName())
@@ -49,7 +48,7 @@ public class PositionResponseData {
                 .build();
     }
 
-    public static List<Positions> buildPositionList(List<PositionRequestData> positionRequestDataList) {
-        return positionRequestDataList.stream().map(PositionResponseData::buildPosition).collect(Collectors.toList());
+    public static List<Positions> buildPositionList(List<PositionDTO> positionRequestDataList) {
+        return positionRequestDataList.stream().map(PositionDTO::buildPosition).collect(Collectors.toList());
     }
 }
